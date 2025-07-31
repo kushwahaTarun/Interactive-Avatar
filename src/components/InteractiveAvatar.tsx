@@ -48,7 +48,7 @@ const DEFAULT_CONFIG: StartAvatarRequest = {
   },
 };
 
-export default function InteractiveAvatar() {
+export function InteractiveAvatar() {
   const { initAvatar, startAvatar, stopAvatar, sessionState, stream } =
     useStreamingAvatarSession();
 
@@ -149,5 +149,13 @@ return (
         <MessageHistory />
       )}
     </div>
+  );
+}
+
+export default function InteractiveAvatarWrapper() {
+  return (
+    <StreamingAvatarProvider basePath={process.env.NEXT_PUBLIC_BASE_API_URL}>
+      <InteractiveAvatar />
+    </StreamingAvatarProvider>
   );
 }
