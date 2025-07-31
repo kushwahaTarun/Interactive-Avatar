@@ -2,34 +2,28 @@
 
 import { useEffect, useState,useRef } from "react";
 import {
-  TaskType,
   AvatarQuality,
   VoiceEmotion,
   StartAvatarRequest,
-  StreamingAvatarApiConfig,
   StreamingEvents,
   ElevenLabsModel,
   VoiceChatTransport,
   STTProvider,
 } from "@heygen/streaming-avatar";
 import { useMemoizedFn, useUnmount } from "ahooks";
-import { useVoiceChat } from "../app/logic/useVoiceChat";
-import { useStreamingAvatarSession } from "../app/logic/useStreamingAvatarSession";
-import { StreamingAvatarProvider, StreamingAvatarSessionState } from "../app/logic/index";
 
+import { Button } from "./Button";
+import { LoadingIcon } from "./Icons";
 import { AvatarConfig } from "./AvatarConfig";
 import { AvatarVideo } from "./AvatarSession/AvatarVideo";
 import { AvatarControls } from "./AvatarSession/AvatarControl";
 import { MessageHistory } from "./AvatarSession/MessageHistory";
-import { Button } from "./Button";
-import { LoadingIcon } from "./Icons";
+import { useStreamingAvatarSession } from "../app/logic/useStreamingAvatarSession";
+import { StreamingAvatarProvider, StreamingAvatarSessionState } from "../app/logic/index";
+import { useVoiceChat } from "../app/logic/useVoiceChat";
 
 import {
   fetchAccessToken,
-  avatarRequest,
-  streamingText,
-  getActiveSessionsList,
-  terminateCurrentSession,
 } from "@/services";
 
 const DEFAULT_CONFIG: StartAvatarRequest = {
