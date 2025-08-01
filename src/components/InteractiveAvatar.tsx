@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState,useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   AvatarQuality,
   VoiceEmotion,
@@ -19,12 +19,13 @@ import { AvatarVideo } from "./AvatarSession/AvatarVideo";
 import { AvatarControls } from "./AvatarSession/AvatarControl";
 import { MessageHistory } from "./AvatarSession/MessageHistory";
 import { useStreamingAvatarSession } from "../app/logic/useStreamingAvatarSession";
-import { StreamingAvatarProvider, StreamingAvatarSessionState } from "../app/logic/index";
+import {
+  StreamingAvatarProvider,
+  StreamingAvatarSessionState,
+} from "../app/logic/index";
 import { useVoiceChat } from "../app/logic/useVoiceChat";
 
-import {
-  fetchAccessToken,
-} from "@/services";
+import { fetchAccessToken } from "@/services";
 
 const DEFAULT_CONFIG: StartAvatarRequest = {
   quality: AvatarQuality.High,
@@ -46,11 +47,11 @@ export function InteractiveAvatar() {
   const { initAvatar, startAvatar, stopAvatar, sessionState, stream } =
     useStreamingAvatarSession();
 
-    const { startVoiceChat } = useVoiceChat();
+  const { startVoiceChat } = useVoiceChat();
 
-    const [config, setConfig] = useState<StartAvatarRequest>(DEFAULT_CONFIG);
+  const [config, setConfig] = useState<StartAvatarRequest>(DEFAULT_CONFIG);
 
-    const mediaStream = useRef<HTMLVideoElement>(null);
+  const mediaStream = useRef<HTMLVideoElement>(null);
 
   const startSessionV2 = useMemoizedFn(async (isVoiceChat: boolean) => {
     try {
@@ -93,7 +94,6 @@ export function InteractiveAvatar() {
       if (isVoiceChat) {
         await startVoiceChat();
       }
-      
     } catch (error) {
       console.error("Error starting avatar session:", error);
     }
@@ -112,10 +112,10 @@ export function InteractiveAvatar() {
     }
   }, [mediaStream, stream]);
 
-return (
-    <div className="w-full flex flex-col gap-4">
-      <div className="flex flex-col rounded-xl bg-zinc-900 overflow-hidden">
-        <div className="relative w-full aspect-video overflow-hidden flex flex-col items-center justify-center">
+  return (
+    <div className="w-full h-screen flex flex-col gap-4 overflow-hidden ">
+      <div className="flex flex-col rounded-xl bg-zinc-900 overflow-hidden flex-1">
+        <div className="relative w-full aspect-video overflow-hidden flex flex-col sm:items-center justify-center flex-1">
           {sessionState !== StreamingAvatarSessionState.INACTIVE ? (
             <AvatarVideo ref={mediaStream} />
           ) : (
