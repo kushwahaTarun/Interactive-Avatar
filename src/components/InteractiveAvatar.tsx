@@ -127,10 +127,16 @@ export function InteractiveAvatar() {
             <AvatarControls />
           ) : sessionState === StreamingAvatarSessionState.INACTIVE ? (
             <div className="flex flex-row gap-4">
-              <Button className="cursor-pointer" onClick={() => startSessionV2(true)}>
+              <Button
+                className="cursor-pointer"
+                onClick={() => startSessionV2(true)}
+              >
                 Start Voice Chat
               </Button>
-              <Button className="cursor-pointer" onClick={() => startSessionV2(false)}>
+              <Button
+                className="cursor-pointer"
+                onClick={() => startSessionV2(false)}
+              >
                 Start Text Chat
               </Button>
             </div>
