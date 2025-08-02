@@ -1,7 +1,8 @@
 version: '3.8'
 services:
-  your-app:
-    image: interactive-avatar
+  app:
+    build: .    # Build the Dockerfile in the current directory
+    image: interactive-avatar:latest  # Name the image
     ports:
       - "4000:3000"  # This maps host port 4000 to container port 3000
     environment:
