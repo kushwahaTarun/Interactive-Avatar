@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  your-app:
+    image: interactive-avatar
+    ports:
+      - "4000:3000"  # This maps host port 4000 to container port 3000
+    environment:
+      - NEXT_PUBLIC_BASE_API_URL=$NEXT_PUBLIC_BASE_API_URL
+      - NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY
